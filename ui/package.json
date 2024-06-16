@@ -1,0 +1,45 @@
+{
+  "name": "ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.ts,.tsx .",
+    "format": "prettier --write --ext .js,.ts,.tsx .",
+    "test": "playwright test && playwright show-report"
+  },
+  "dependencies": { 
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^2.9.10",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.9",
+    "@mui/styles": "^5.10.10",
+    "cjstoesm": "^2.1.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "classnames": "^2.3.2",
+    "material-react-table": "^1.14.0",
+    "playwright": "^1.44.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2",
+    "uuid": "^9.0.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@playwright/experimental-ct-react": "^1.44.1",
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^18.11.7",
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "@types/uuid": "^8.3.4",
+    "@vitejs/plugin-react": "^2.2.0",
+    "dotenv": "^16.0.3",
+    "typescript": "~4.9.5",
+    "vite": "^3.2.0"
+  }
+}

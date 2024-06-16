@@ -8,7 +8,7 @@ export const generateAndAddToken = async (res: Response, user: User) => {
     expiresIn: "7days",
   });
 
-  res.cookie("token", token, {
+  res.cookie("jwtToken", token, {
     maxAge: WEEK_IN_SECONDS,
     httpOnly: true,
     secure: true,

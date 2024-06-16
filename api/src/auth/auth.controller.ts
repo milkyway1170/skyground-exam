@@ -2,8 +2,9 @@ import express, { Request, Response } from "express";
 import "dotenv/config";
 import { User } from "../user/user.entity";
 import { checkPassword, hashedPassword } from "../helpers/password";
-import { WEEK_IN_SECONDS } from "../constants";
 import { generateAndAddToken } from "../helpers/generateAndAddToken";
+import { WEEK_IN_SECONDS } from "../constants";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.post("/register", async (req: Request, res: Response) => {
     if (existUser !== null) {
       return res
         .status(401)
-        .json({ error: `User with email ${email} is exist` });
+        .json({ success: false, error: `User with email ${email} is exist` });
     }
 
     const passwordHash = await hashedPassword(password);
@@ -30,10 +31,10 @@ router.post("/register", async (req: Request, res: Response) => {
 
     await generateAndAddToken(res, savedUser);
 
-    res.status(200).send();
+    res.status(200).send({ success: true });
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ error: "Registration failed" });
+    console.log(error);
+    res.status(500).json({ success: false, error: "Registration failed" });
   }
 });
 
@@ -46,9 +47,9 @@ router.post("/login", async (req: Request, res: Response) => {
       return res.status(401).json({ error: "Authentication failed" });
     }
 
-    const passwordMatch = checkPassword(password, user.passwordHash);
+    const passwordMatch = await checkPassword(password, user.passwordHash);
 
-    if (passwordMatch == null) {
+    if (!passwordMatch) {
       return res.status(401).json({ error: "Authentication failed" });
     }
 
@@ -58,6 +59,16 @@ router.post("/login", async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Login failed" });
+  }
+});
+
+router.delete("/logout", async (_: Request, res: Response) => {
+  try {
+    res.clearCookie("jwtToken");
+    res.status(204).send();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Logout failed" });
   }
 });
 

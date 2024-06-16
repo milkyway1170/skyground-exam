@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+node_modules/
+dist/
+build/
+tmp/
+temp/
+
+.env
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
