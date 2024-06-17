@@ -2,6 +2,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 import "reflect-metadata";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { AppDataSource } from "./src/db/dataSource";
 import { routingBuilder } from "./src/routing";
 
@@ -20,6 +21,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 
 routingBuilder(app);
 

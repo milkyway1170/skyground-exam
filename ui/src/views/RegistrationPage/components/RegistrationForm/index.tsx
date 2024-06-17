@@ -49,7 +49,7 @@ export default function RegistrationForm(): ReactElement {
         type: NotificationType.Danger,
       });
     } else {
-      navigate("/");
+      navigate("/home");
     }
   };
 

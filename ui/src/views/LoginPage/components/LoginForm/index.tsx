@@ -45,7 +45,7 @@ export default function LoginForm(): ReactElement {
         type: NotificationType.Danger,
       });
     } else {
-      navigate("/");
+      navigate("/home");
     }
   };
 

@@ -1,4 +1,4 @@
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { NextFunction, Request, Response } from "express";
 import { CustomRequest } from "./types/customRequest.type";
@@ -10,7 +10,7 @@ export const AuthenticateMiddleware = (
   next: NextFunction
 ) => {
   try {
-    const token = req.headers.cookie?.slice(9);
+    const token = req.cookies["jwtToken"];
 
     if (!token) {
       return res.status(401).json({ error: "Authorization token not found" });
